@@ -12,9 +12,9 @@ config :git_hooks,
         {:cmd, "mix compile --warnings-as-errors"},
         # {:cmd, "mix credo"},
         {:cmd, "mix sobelow"},
-        {:cmd, "mix knigge.verify"},
+        {:cmd, "mix knigge.verify"}
         # {:cmd, "mix test --trace"},
-        {:cmd, "mix dialyzer"}
+        # {:cmd, "mix dialyzer"}
       ]
     ]
   ]
