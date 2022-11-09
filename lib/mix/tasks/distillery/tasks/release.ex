@@ -109,7 +109,7 @@ defmodule Mix.Tasks.Distillery.Release do
       is_upgrade: false,
       no_tar: false,
       upgrade_from: :latest,
-      erl_opts: nil,
+      erl_opts: nil
     }
 
     do_parse_args(flags, defaults)

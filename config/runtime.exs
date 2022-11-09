@@ -101,12 +101,12 @@ if config_env() == :prod do
     key_certificates_dir: System.get_env("ARCHETHIC_CRYPTO_CERT_DIR", "~/aebot/key_certificates")
 
   config :archethic,
-        Archethic.Crypto.NodeKeystore.Origin.SoftwareImpl,
-        node_seed: System.get_env("ARCHETHIC_CRYPTO_SEED")
+         Archethic.Crypto.NodeKeystore.Origin.SoftwareImpl,
+         node_seed: System.get_env("ARCHETHIC_CRYPTO_SEED")
 
   config :archethic,
-        Archethic.Crypto.NodeKeystore.Origin,
-        (case(System.get_env("ARCHETHIC_CRYPTO_NODE_KEYSTORE_IMPL", "TPM") |> String.upcase()) do
+         Archethic.Crypto.NodeKeystore.Origin,
+         (case(System.get_env("ARCHETHIC_CRYPTO_NODE_KEYSTORE_IMPL", "TPM") |> String.upcase()) do
             "TPM" ->
               Archethic.Crypto.NodeKeystore.Origin.TPMImpl
 
@@ -133,8 +133,8 @@ if config_env() == :prod do
     validate_node_ip: System.get_env("ARCHETHIC_NODE_IP_VALIDATION", "true") == "true"
 
   config :archethic,
-        Archethic.Networking.IPLookup,
-        (case(System.get_env("ARCHETHIC_NETWORKING_IMPL", "NAT") |> String.upcase()) do
+         Archethic.Networking.IPLookup,
+         (case(System.get_env("ARCHETHIC_NETWORKING_IMPL", "NAT") |> String.upcase()) do
             "NAT" ->
               Archethic.Networking.IPLookup.NATDiscovery
 
@@ -148,12 +148,12 @@ if config_env() == :prod do
   config :archethic, Archethic.Networking.PortForwarding,
     enabled:
       (case(System.get_env("ARCHETHIC_NETWORKING_PORT_FORWARDING", "true")) do
-        "true" ->
-          true
+         "true" ->
+           true
 
-        _ ->
-          false
-      end)
+         _ ->
+           false
+       end)
 
   config :archethic, Archethic.Networking.IPLookup.Static,
     hostname: System.get_env("ARCHETHIC_STATIC_IP")

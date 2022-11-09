@@ -23,7 +23,7 @@ defmodule Distillery.Releases.Release do
               # required for upgrades
               :sasl,
               # required for some command tooling
-              :runtime_tools,
+              :runtime_tools
               # needed for config provider API
               # :distillery
               # can also use `app_name: type`, as in `some_dep: load`,
@@ -257,10 +257,12 @@ defmodule Distillery.Releases.Release do
           # Merge plugins
           rel_plugins = Map.get(acc, :plugins, [])
           Map.put(acc, :plugins, rel_plugins ++ ps)
+
         {k, v}, acc ->
           case v do
             ignore when ignore in [nil, []] ->
               acc
+
             _ ->
               Map.put(acc, k, v)
           end
@@ -333,7 +335,7 @@ defmodule Distillery.Releases.Release do
       end
 
     # if config.is_upgrade do
-      apply_upgrade_configuration(release, config, log?)
+    apply_upgrade_configuration(release, config, log?)
     # else
     #   {:ok, release}
     # end
@@ -440,6 +442,7 @@ defmodule Distillery.Releases.Release do
     # Validate listed apps
     for app <- apps do
       IO.inspect(app)
+
       app_name =
         case app do
           {name, start_type} ->
@@ -509,14 +512,17 @@ defmodule Distillery.Releases.Release do
           :ok ->
             # Haven't seen this app yet, and it is not excluded
             do_add_app(dg, as, parent, App.new(name, start_type))
+
           error ->
             error
         end
+
       _ ->
         # Already visited
         :ok
     end
   end
+
   defp add_app(dg, as, parent, name) do
     add_app(dg, as, parent, {name, nil})
   end
@@ -526,9 +532,11 @@ defmodule Distillery.Releases.Release do
     :ets.insert(as, {app.name, app})
     do_add_children(dg, as, app.name, app.applications ++ app.included_applications)
   end
+
   defp do_add_app(dg, as, parent, app) do
     :digraph.add_vertex(dg, app.name)
     :ets.insert(as, {app.name, app})
+
     case :digraph.add_edge(dg, parent, app.name) do
       {:error, reason} ->
         raise "edge from #{parent} to #{app.name} would result in cycle: #{inspect(reason)}"

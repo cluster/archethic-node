@@ -362,10 +362,10 @@ defmodule Distillery.Releases.Appup do
 
       # If a depends on b and b doesn't depend on a
       # Then b comes first, and vice versa
-      am in bd and not (bm in ad) ->
+      am in bd and bm not in ad ->
         true
 
-      not (am in bd) and bm in ad ->
+      am not in bd and bm in ad ->
         false
 
       # If either they don't depend on each other,

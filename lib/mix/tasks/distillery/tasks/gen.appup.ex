@@ -62,8 +62,8 @@ defmodule Mix.Tasks.Distillery.Gen.Appup do
 
       {:ok, config} ->
         with {:ok, release} <- Assembler.pre_assemble(config),
-              :ok <- Assembler.write_release_metadata(release) do
-            #  :ok <- do_gen_appup(release, opts) do
+             :ok <- Assembler.write_release_metadata(release) do
+          #  :ok <- do_gen_appup(release, opts) do
           Logger.info(
             "You can find your generated appups in rel/appups/<app>/ with the .appup extension"
           )

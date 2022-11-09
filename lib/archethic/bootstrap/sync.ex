@@ -58,7 +58,9 @@ defmodule Archethic.Bootstrap.Sync do
   def require_update?(_ip, _port, _http_port, _transport, nil), do: false
 
   def require_update?(ip, port, http_port, transport, last_sync_date) do
-    out_of_sync_date_threshold = Application.fetch_env!(:archethic, __MODULE__)[:out_of_sync_date_threshold]
+    out_of_sync_date_threshold =
+      Application.fetch_env!(:archethic, __MODULE__)[:out_of_sync_date_threshold]
+
     first_node_public_key = Crypto.first_node_public_key()
 
     case P2P.authorized_and_available_nodes() do

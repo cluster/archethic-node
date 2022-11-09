@@ -440,9 +440,7 @@ defmodule Distillery.Releases.Config do
 
         :else ->
           raise ArgumentError,
-                "expected overlay_vars to be a keyword list, but got: #{
-                  inspect(profile.overlay_vars)
-                }"
+                "expected overlay_vars to be a keyword list, but got: #{inspect(profile.overlay_vars)}"
       end
 
       cond do
@@ -452,22 +450,16 @@ defmodule Distillery.Releases.Config do
 
         not is_nil(profile.vm_args) and not is_binary(profile.vm_args) ->
           raise ArgumentError,
-                "expected :vm_args to be nil or a path string, but got: #{
-                  inspect(profile.vm_args)
-                }"
+                "expected :vm_args to be nil or a path string, but got: #{inspect(profile.vm_args)}"
 
         not is_nil(profile.sys_config) and not is_binary(profile.sys_config) ->
           raise ArgumentError,
-                "expected :sys_config to be nil or a path string, but got: #{
-                  inspect(profile.sys_config)
-                }"
+                "expected :sys_config to be nil or a path string, but got: #{inspect(profile.sys_config)}"
 
         not is_nil(profile.include_erts) and not is_boolean(profile.include_erts) and
             not is_binary(profile.include_erts) ->
           raise ArgumentError,
-                "expected :include_erts to be boolean or a path string, but got: #{
-                  inspect(profile.include_erts)
-                }"
+                "expected :include_erts to be boolean or a path string, but got: #{inspect(profile.include_erts)}"
 
         not is_nil(profile.include_src) and not is_boolean(profile.include_src) and
             not is_binary(profile.include_src) ->
@@ -477,9 +469,7 @@ defmodule Distillery.Releases.Config do
         not is_nil(profile.include_system_libs) and not is_boolean(profile.include_system_libs) and
             not is_binary(profile.include_system_libs) ->
           raise ArgumentError,
-                "expected :include_system_libs to be boolean or a path string, but got: #{
-                  inspect(profile.include_system_libs)
-                }"
+                "expected :include_system_libs to be boolean or a path string, but got: #{inspect(profile.include_system_libs)}"
 
         not is_nil(profile.erl_opts) and not is_binary(profile.erl_opts) ->
           raise ArgumentError,
@@ -491,57 +481,39 @@ defmodule Distillery.Releases.Config do
 
         not is_nil(profile.strip_debug_info) and not is_boolean(profile.strip_debug_info) ->
           raise ArgumentError,
-                "expected :strip_debug_info to be a boolean, but got: #{
-                  inspect(profile.strip_debug_info)
-                }"
+                "expected :strip_debug_info to be a boolean, but got: #{inspect(profile.strip_debug_info)}"
 
         not is_nil(profile.pre_configure_hooks) and not is_binary(profile.pre_configure_hooks) ->
           raise ArgumentError,
-                "expected :pre_configure_hooks to be nil or a path string, but got: #{
-                  inspect(profile.pre_configure_hooks)
-                }"
+                "expected :pre_configure_hooks to be nil or a path string, but got: #{inspect(profile.pre_configure_hooks)}"
 
         not is_nil(profile.post_configure_hooks) and not is_binary(profile.post_configure_hooks) ->
           raise ArgumentError,
-                "expected :post_configure_hooks to be nil or a path string, but got: #{
-                  inspect(profile.post_configure_hooks)
-                }"
+                "expected :post_configure_hooks to be nil or a path string, but got: #{inspect(profile.post_configure_hooks)}"
 
         not is_nil(profile.pre_start_hooks) and not is_binary(profile.pre_start_hooks) ->
           raise ArgumentError,
-                "expected :pre_start_hooks to be nil or a path string, but got: #{
-                  inspect(profile.pre_start_hooks)
-                }"
+                "expected :pre_start_hooks to be nil or a path string, but got: #{inspect(profile.pre_start_hooks)}"
 
         not is_nil(profile.post_start_hooks) and not is_binary(profile.post_start_hooks) ->
           raise ArgumentError,
-                "expected :post_start_hooks to be nil or a path string, but got: #{
-                  inspect(profile.post_start_hooks)
-                }"
+                "expected :post_start_hooks to be nil or a path string, but got: #{inspect(profile.post_start_hooks)}"
 
         not is_nil(profile.pre_stop_hooks) and not is_binary(profile.pre_stop_hooks) ->
           raise ArgumentError,
-                "expected :pre_stop_hooks to be nil or a path string, but got: #{
-                  inspect(profile.pre_stop_hooks)
-                }"
+                "expected :pre_stop_hooks to be nil or a path string, but got: #{inspect(profile.pre_stop_hooks)}"
 
         not is_nil(profile.post_stop_hooks) and not is_binary(profile.post_stop_hooks) ->
           raise ArgumentError,
-                "expected :post_stop_hooks to be nil or a path string, but got: #{
-                  inspect(profile.post_stop_hooks)
-                }"
+                "expected :post_stop_hooks to be nil or a path string, but got: #{inspect(profile.post_stop_hooks)}"
 
         not is_nil(profile.pre_upgrade_hooks) and not is_binary(profile.pre_upgrade_hooks) ->
           raise ArgumentError,
-                "expected :pre_upgrade_hooks to be nil or a path string, but got: #{
-                  inspect(profile.pre_upgrade_hooks)
-                }"
+                "expected :pre_upgrade_hooks to be nil or a path string, but got: #{inspect(profile.pre_upgrade_hooks)}"
 
         not is_nil(profile.post_upgrade_hooks) and not is_binary(profile.post_upgrade_hooks) ->
           raise ArgumentError,
-                "expected :post_upgrade_hooks to be nil or a path string, but got: #{
-                  inspect(profile.post_upgrade_hooks)
-                }"
+                "expected :post_upgrade_hooks to be nil or a path string, but got: #{inspect(profile.post_upgrade_hooks)}"
 
         :else ->
           true

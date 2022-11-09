@@ -1157,7 +1157,9 @@ defmodule Archethic.Crypto do
 
   def get_root_ca_public_key(<<curve::8, origin_id::8, _::binary>>) when curve in [1, 2] do
     # :secp256 r1 & k1
-    ecdsa_certification_public_keys = Application.fetch_env!(:archethic, __MODULE__)[:root_ca_public_keys]
+    ecdsa_certification_public_keys =
+      Application.fetch_env!(:archethic, __MODULE__)[:root_ca_public_keys]
+
     case Keyword.get(ecdsa_certification_public_keys, ID.to_origin(origin_id)) do
       nil ->
         ""

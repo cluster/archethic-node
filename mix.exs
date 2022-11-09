@@ -22,7 +22,7 @@ defmodule Archethic.MixProject do
           strip_beams: false
           # include_executables_for: [:unix],
           # applications: [runtime_tools: :permanent]
-        ],
+        ]
       ]
     ]
   end

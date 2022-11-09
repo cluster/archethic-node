@@ -19,9 +19,9 @@ defmodule Distillery.Releases.Assembler do
     with {:ok, environment} <- Release.select_environment(config),
          {:ok, release} <- Release.select_release(config),
          release <- apply_environment(release, environment),
-        #  {:ok, release} <- Plugin.before_assembly(release),
+         #  {:ok, release} <- Plugin.before_assembly(release),
          {:ok, release} <- Release.apply_configuration(release, config, true),
-        #  :ok <- Release.validate(release),
+         #  :ok <- Release.validate(release),
          :ok <- make_paths(release) do
       {:ok, release}
     end
@@ -251,6 +251,7 @@ defmodule Distillery.Releases.Assembler do
         IO.inspect(v1_path, label: "v1_path")
         IO.inspect(v2_path, label: "v2_path")
         IO.inspect(release.profile.appup_transforms, label: "release.profile.appup_transforms")
+
         case Appup.make(app, v1, v2, v1_path, v2_path, release.profile.appup_transforms) do
           {:error, _} = err ->
             IO.inspect(err, label: "error during gen appups")
