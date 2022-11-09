@@ -57,7 +57,7 @@ defmodule Archethic.MixProject do
       {:phoenix_live_view, "~> 0.18"},
       {:phoenix_pubsub, "~> 2.1"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.3"},
+      {:plug_cowboy, "~> 2.6"},
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
       {:absinthe_phoenix, "~> 2.0"},
@@ -84,7 +84,7 @@ defmodule Archethic.MixProject do
       # Test
       {:mox, "~> 1.0", only: [:test]},
       {:stream_data, "~> 0.5", only: [:test], runtime: false},
-      {:floki, "~> 0.33", only: :test},
+      {:floki, "~> 0.34", only: :test},
 
       # P2P
       {:ranch, "~> 2.1", override: true},
