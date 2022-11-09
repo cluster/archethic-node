@@ -22,25 +22,33 @@ use Distillery.Releases.Config,
 # and environment configuration is called a profile
 
 environment Mix.env() do
-  set include_erts: true
-  set include_src: false
-  set vm_args: "rel/vm.args"
-  set pre_configure_hooks: "rel/pre_configure"
-  set post_start_hooks: "rel/post_start"
+  # set include_erts: true
+  # set include_src: false
+  # set vm_args: "rel/vm.args"
 
-  set config_providers: [
-    {Distillery.Releases.Config.Providers.Elixir, ["${REL_DIR}/runtime_config.exs"]}
-  ]
+  # !!!!!
+  # pre_configured is not handled yet
+  # !!!!!
 
-  set overlays: [
-    {:copy, "config/#{Mix.env()}.exs", "releases/<%= release_version %>/runtime_config.exs"}
-  ]
+  # set pre_configure_hooks: "rel/pre_configure"
+  # # set post_start_hooks: "rel/post_start"
 
-  set commands: [
-    regression_test: "rel/commands/regression_test"
-  ]
+  # set config_providers: [
+  #   {Distillery.Releases.Config.Providers.Elixir, ["${REL_DIR}/runtime_config.exs"]}
+  # ]
 
-  plugin Distillery.Releases.Plugin.CookieLoader
+  # set overlays: [
+  #   {:copy, "config/#{Mix.env()}.exs", "releases/<%= release_version %>/runtime_config.exs"}
+  # ]
+
+  # set commands: [
+  #   regression_test: "rel/commands/regression_test"
+  # ]
+
+    # !!!!!
+  # CookieLoader is not handled yet
+  # !!!!!
+  # plugin Distillery.Releases.Plugin.CookieLoader
 end
 
 # You may define one or more releases in this file.
@@ -48,7 +56,7 @@ end
 # when running `mix distillery.release`, the first release in the file
 # will be used by default
 
-release :archethic_node do
+release :archethic do
   set version: current_version(:archethic)
 
   set applications: [

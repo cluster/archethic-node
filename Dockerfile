@@ -62,22 +62,33 @@ RUN if [ $with_tests -eq 1 ]; then mix git_hooks.run pre_push ;fi
 # Install
 RUN mkdir -p /opt/app \
   && cd /opt/app \
-  && tar zxf /opt/code/_build/${MIX_ENV}/rel/archethic_node/releases/*/archethic_node.tar.gz
-CMD /opt/app/bin/archethic_node foreground
+  && cp -a /opt/code/_build/${MIX_ENV}/rel/archethic ./
+  # && cp -a /opt/code/_build/${MIX_ENV}/rel/archethic ./
+  # && cp -a /opt/code/_build/${MIX_ENV}/rel/archethic ./ \
+  # && ls /opt/code/_build/prod/lib/archethic/priv/c_dist/upnpc && sleep 5000
+  # && ls /opt/app/bin && sleep 5000
+# \
+#   && tar zxf /opt/code/_build/${MIX_ENV}/rel/archethic_node/releases/*/archethic_node.tar.gz
+# RUN ls /opt/code/_build/prod/rel && sleep 5000
+# COPY /opt/code/_build/${MIX_ENV}/rel/archethic ./
+CMD /opt/app/archethic/bin/archethic start
 
 ################################################################################
 
 FROM archethic-ci as build
 
-FROM hexpm/elixir:1.14.1-erlang-24.3.4.6-alpine-3.16.2
+FROM elixir:1.14.1-alpine
 
 RUN apk add --no-cache --update bash git openssl libsodium
 
 COPY --from=build /opt/app /opt/app
-COPY --from=build /opt/code/.git /opt/code/.git
+COPY --from=build /opt/code /opt/code
+# COPY --from=build /opt/code/.git /opt/code/.git
 
 WORKDIR /opt/code
 RUN git reset --hard
 
+# RUN /opt/code/_build/prod/lib/archethic/priv/c_dist/upnpc -s && sleep 5000
+
 WORKDIR /opt/app
-CMD /opt/app/bin/archethic_node foreground
+CMD /opt/app/archethic/bin/archethic start

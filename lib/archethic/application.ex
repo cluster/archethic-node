@@ -49,6 +49,8 @@ defmodule Archethic.Application do
 
   alias Archethic.Metrics.MetricSupervisor, as: MetricSupervisor
 
+  alias Mix.Tasks.Archethic.Migrate
+
   require Logger
 
   def start(_type, _args) do
@@ -107,6 +109,11 @@ defmodule Archethic.Application do
     OracleChain.config_change(changed)
     Reward.config_change(changed)
     BeaconChain.config_change(changed)
+    :ok
+  end
+
+  def start_phase(:migrate, _, _) do
+    Migrate.run(nil)
     :ok
   end
 end

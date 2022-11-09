@@ -96,12 +96,6 @@ defmodule Archethic.Crypto do
   """
   @type aes_cipher :: <<_::384, _::_*8>>
 
-  @ecdsa_certification_public_keys Application.compile_env(
-                                     :archethic,
-                                     [__MODULE__, :root_ca_public_keys],
-                                     []
-                                   )
-
   @doc """
   Derive a new keypair from a seed (retrieved from the local keystore
   and an index representing the number of previous generate keypair.
@@ -1163,7 +1157,8 @@ defmodule Archethic.Crypto do
 
   def get_root_ca_public_key(<<curve::8, origin_id::8, _::binary>>) when curve in [1, 2] do
     # :secp256 r1 & k1
-    case Keyword.get(@ecdsa_certification_public_keys, ID.to_origin(origin_id)) do
+    ecdsa_certification_public_keys = Application.fetch_env!(:archethic, __MODULE__)[:root_ca_public_keys]
+    case Keyword.get(ecdsa_certification_public_keys, ID.to_origin(origin_id)) do
       nil ->
         ""
 

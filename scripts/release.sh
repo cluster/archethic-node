@@ -66,6 +66,10 @@ if [ $UPGRADE == 1 ]
 then
     # Build upgrade releases
     echo "Build the upgrade release"
+
+    # !!!
+    # NEED TO HANDLE THE UPGRADE HERE
+    # !!!
     MIX_ENV=prod mix distillery.release --upgrade
 
     echo "Copy upgraded release into ${INSTALL_DIR}/releases/${VERSION}"
@@ -78,10 +82,11 @@ else
     # Build and install the releases
 
     echo "Generate release"
-    MIX_ENV=prod mix distillery.release
+    MIX_ENV=prod mix release
 
     echo "Install release"
-    tar zxvf _build/prod/rel/archethic_node/releases/$VERSION/archethic_node.tar.gz -C $INSTALL_DIR
+    # tar zxvf _build/prod/rel/archethic_node/releases/$VERSION/archethic_node.tar.gz -C $INSTALL_DIR
+    cp _build/prod/rel/archethic/bin/archethic $INSTALL_DIR
     echo "Release has been installed on ${INSTALL_DIR}"
 
     if [ $SERVICE_CREATION == 1 ]
@@ -101,8 +106,8 @@ else
     
     WorkingDirectory=$INSTALL_DIR
     
-    ExecStart=$INSTALL_DIR/bin/archethic_node foreground
-    ExecStop=$INSTALL_DIR/bin/archethic_node stop
+    ExecStart=$INSTALL_DIR/bin/archethic start
+    ExecStop=$INSTALL_DIR/bin/archethic stop
     
     EnvironmentFile=/etc/default/archethic.env
     Environment=LANG=en_US.utf8

@@ -176,8 +176,8 @@ defmodule Archethic.Utils.Testnet do
                 "--timeout=0",
                 "--strict",
                 "--",
-                "./bin/archethic_node",
-                "foreground"
+                "./bin/archethic",
+                "start"
               ],
               volumes: [
                 "c/scripts/wait-for-tcp.sh:/wait-for-tcp.sh:ro"
@@ -221,8 +221,8 @@ defmodule Archethic.Utils.Testnet do
                 "--strict", "--",
                 "/wait-for-node.sh",
                 "http://node1:40000/up",
-                "./bin/archethic_node",
-                "foreground"
+                "./bin/archethic",
+                "start"
               ]
             },
             "node3" => %{
@@ -263,8 +263,8 @@ defmodule Archethic.Utils.Testnet do
                 "--strict", "--",
                 "/wait-for-node.sh",
                 "http://node1:40000/up",
-                "./bin/archethic_node",
-                "foreground"
+                "./bin/archethic",
+                "start"
               ]
             },
             "collector" => %{
@@ -277,7 +277,7 @@ defmodule Archethic.Utils.Testnet do
               environment: %{
                 "ARCHETHIC_MUT_DIR" => "/opt/data"
               },
-              command: ["./bin/archethic_node", "regression_test", "--validate", "node1", "node2", "node3"],
+              command: ["./bin/archethic", "regression_test", "--validate", "node1", "node2", "node3"],
               volumes: [
                 "./validator_data/:/opt/data"
               ],
@@ -289,7 +289,7 @@ defmodule Archethic.Utils.Testnet do
               environment: %{
                 "ARCHETHIC_MUT_DIR" => "/opt/data"
               },
-              command: ["./bin/archethic_node", "regression_test", "--bench", "node1", "node2", "node3"],
+              command: ["./bin/archethic", "regression_test", "--bench", "node1", "node2", "node3"],
               volumes: [
                 "./bench_data/:/opt/data"
               ],
@@ -348,7 +348,7 @@ defmodule Archethic.Utils.Testnet do
         environment: %{
           "ARCHETHIC_MUT_DIR" => "/opt/data"
         },
-        command: ["./bin/archethic_node", "regression_test", "--validate" | uninodes],
+        command: ["./bin/archethic", "regression_test", "--validate" | uninodes],
         volumes: [
           "./validator_data/:/opt/data"
         ],
@@ -360,7 +360,7 @@ defmodule Archethic.Utils.Testnet do
         environment: %{
           "ARCHETHIC_MUT_DIR" => "/opt/data"
         },
-        command: ["./bin/archethic_node", "regression_test", "--bench" | uninodes],
+        command: ["./bin/archethic", "regression_test", "--bench" | uninodes],
         volumes: [
           "./bench_data/:/opt/data"
         ],
@@ -452,8 +452,8 @@ defmodule Archethic.Utils.Testnet do
          "--timeout=0",
          "--strict",
          "--",
-         "./bin/archethic_node",
-         "foreground"
+         "./bin/archethic",
+         "start"
        ]
      }}
   end
@@ -500,8 +500,8 @@ defmodule Archethic.Utils.Testnet do
          "--",
          "/wait-for-node.sh",
          "http://node1:#{web_port()}/up",
-         "./bin/archethic_node",
-         "foreground"
+         "./bin/archethic",
+         "start"
        ]
      }}
   end

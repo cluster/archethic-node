@@ -25,11 +25,6 @@ defmodule Archethic.Bootstrap.Sync do
 
   require Logger
 
-  @out_of_sync_date_threshold Application.compile_env(:archethic, [
-                                __MODULE__,
-                                :out_of_sync_date_threshold
-                              ])
-
   @genesis_daily_nonce_seed Application.compile_env!(:archethic, [
                               NetworkInit,
                               :genesis_daily_nonce_seed
@@ -63,6 +58,7 @@ defmodule Archethic.Bootstrap.Sync do
   def require_update?(_ip, _port, _http_port, _transport, nil), do: false
 
   def require_update?(ip, port, http_port, transport, last_sync_date) do
+    out_of_sync_date_threshold = Application.fetch_env!(:archethic, __MODULE__)[:out_of_sync_date_threshold]
     first_node_public_key = Crypto.first_node_public_key()
 
     case P2P.authorized_and_available_nodes() do
@@ -81,7 +77,7 @@ defmodule Archethic.Bootstrap.Sync do
              transport: prev_transport
            }}
           when ip != prev_ip or port != prev_port or http_port != prev_http_port or
-                 diff_sync > @out_of_sync_date_threshold or
+                 diff_sync > out_of_sync_date_threshold or
                  prev_transport != transport ->
             true
 

@@ -220,6 +220,9 @@ defmodule Archethic.Governance.Code.CICD.Docker do
       containers
       |> Task.async_stream(
         fn c ->
+          # !!!
+          # UPGRADE TO HANDLE HERE
+          # !!!
           with {_, 0} <- docker(["exec", c, "mkdir", "-p", "#{dst}"]),
                {_, 0} <- docker(["cp", rel, "#{c}:#{dst}/#{@release}"]),
                {_, 0} <- docker(["exec", c, "./bin/archethic_node", "upgrade", version]) do

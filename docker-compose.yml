@@ -45,8 +45,8 @@ services:
       - ./scripts/wait-for-tcp.sh:/wait-for-tcp.sh:ro
     command:
       [
-        "./bin/archethic_node",
-        "foreground"
+        "./archethic/bin/archethic",
+        "start"
       ]
     networks:
       archethic_net:
@@ -82,8 +82,8 @@ services:
       [
         "/wait-for-node.sh",
         "node1:40000/up",
-        "./bin/archethic_node",
-        "foreground"
+        "./archethic/bin/archethic",
+        "start"
       ]
     networks:
       archethic_net:
@@ -118,8 +118,8 @@ services:
       [
         "/wait-for-node.sh",
         "node1:40000/up",
-        "./bin/archethic_node",
-        "foreground"
+        "./archethic/bin/archethic",
+        "start"
       ]
     networks:
       archethic_net:
@@ -142,7 +142,7 @@ services:
       - ARCHETHIC_MUT_DIR=/opt/data
     command:
       [
-        "./bin/archethic_node",
+        "./archethic/bin/archethic",
         "regression_test",
         "--bench",
         "node1",
@@ -160,7 +160,7 @@ services:
       - ARCHETHIC_MUT_DIR=/opt/data
     command:
       [
-        "./bin/archethic_node",
+        "./archethic/bin/archethic",
         "regression_test",
         "--playbook",
         "node1",

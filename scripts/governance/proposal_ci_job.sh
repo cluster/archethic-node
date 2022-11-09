@@ -17,5 +17,8 @@ git am ${PROPOSAL_FILENAME} --committer-date-is-author-date --no-gpg-sign
 echo "=== Run CI"
 mix git_hooks.run pre_push
 
+# !!!
+# NEED TO HANDLE THE UPGRADE HERE !!!!
+# !!!
 echo "=== Create upgrade"
 mix distillery.release --upgrade

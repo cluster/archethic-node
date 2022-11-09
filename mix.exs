@@ -13,10 +13,17 @@ defmodule Archethic.MixProject do
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      compilers: [:elixir_make, :phoenix] ++ Mix.compilers(),
+      compilers: [:elixir_make] ++ Mix.compilers(),
       elixirc_paths: elixirc_paths(Mix.env()),
       elixirc_options: [warnings_as_errors: true],
-      dialyzer: dialyzer()
+      dialyzer: dialyzer(),
+      releases: [
+        archethic: [
+          strip_beams: false
+          # include_executables_for: [:unix],
+          # applications: [runtime_tools: :permanent]
+        ],
+      ]
     ]
   end
 
@@ -24,7 +31,8 @@ defmodule Archethic.MixProject do
   def application do
     [
       extra_applications: [:logger, :inets, :os_mon, :runtime_tools, :xmerl],
-      mod: {Archethic.Application, []}
+      mod: {Archethic.Application, []},
+      start_phases: [{:migrate, []}]
     ]
   end
 
@@ -97,7 +105,7 @@ defmodule Archethic.MixProject do
       {:crontab, "~> 1.1"},
       {:earmark, "~> 1.4"},
       {:sizeable, "~> 1.0"},
-      {:distillery, github: "bitwalker/distillery", ref: "6700edb"},
+      # {:distillery, github: "bitwalker/distillery", ref: "6700edb"},
       {:exjsonpath, "~> 0.9"},
       {:rand_compat, "~> 0.0.3"},
       {:gen_state_machine, "~> 3.0"},
